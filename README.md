@@ -1,0 +1,2 @@
+puppet-stig_generic
+===================
