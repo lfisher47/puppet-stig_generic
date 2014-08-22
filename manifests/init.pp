@@ -137,6 +137,13 @@ class stig_generic {
     ensure => 'stopped',
     enable => false,
   }
+  #2.4.3
+  package { 'setroubleshoot':
+    ensure => 'absent',
+  }
+  package { 'mctrans':
+    ensure => 'absent',
+  }
 
   
 }
