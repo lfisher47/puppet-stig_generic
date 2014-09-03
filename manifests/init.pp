@@ -11,13 +11,13 @@ class stig_generic {
   file { ['/lib', '/lib64', '/usr/lib', '/usr/lib64']:
     owner => 'root',
     group => 'root',
-    mode  => '0755',
+    mode  => '0555',
   }
   #RHEL-06-000047, RHEL-06-000048
   file { ['/bin', '/usr/bin', '/usr/local/bin', '/sbin', '/usr/sbin', '/usr/local/sbin']:
     owner => 'root',
     group => 'root',
-    mode  => '0755',
+    mode  => '0555',
   }
 
   #RHEL-06-000071
@@ -142,6 +142,10 @@ class stig_generic {
     ensure => 'absent',
   }
   package { 'mctrans':
+    ensure => 'absent',
+  }
+  #3.17/3.12
+  package { 'dovecot':
     ensure => 'absent',
   }
 
