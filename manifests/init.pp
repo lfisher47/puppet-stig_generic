@@ -1,4 +1,6 @@
-class stig_generic {
+class stig_generic (
+  $ipv6enabled = 'false'
+){
 
   if ($::operatingsystem == 'RedHat') { 
   #RHEL-06-000009 - Only RedHat OS since variants don't use satellite.
@@ -24,13 +26,13 @@ class stig_generic {
   package { 'screen':
     ensure => 'installed',
   }
-
+  if ($ipv6enabled) {
   #RHEL-06-000103, RHEL-06-000106, RHEL-06-000107
-  service { 'ip6tables':
-    ensure => 'running',
-    enable => true,
+    service { 'ip6tables':
+      ensure => 'running',
+      enable => true,
+    }
   }
-
   #RHEL-06-000204, RHEL-05-000203
   package { 'xinetd':
     ensure => 'absent',
