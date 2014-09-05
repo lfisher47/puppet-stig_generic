@@ -1,5 +1,5 @@
 class stig_generic (
-  $ipv6enabled = 'false'
+  $ipv6enabled = false
 ){
 
   if ($::operatingsystem == 'RedHat') { 
