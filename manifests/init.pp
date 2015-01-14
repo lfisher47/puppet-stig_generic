@@ -97,11 +97,6 @@ class stig_generic (
     ensure => 'stopped',
     enable => false,
   }
-  #RHEL-06-000266
-  service { 'oddjobd':
-    ensure => 'stopped',
-    enable => false,
-  }
   #RHEL-06-000267
   service { 'qpidd':
     ensure => 'stopped',
