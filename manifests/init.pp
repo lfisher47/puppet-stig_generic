@@ -1,5 +1,7 @@
 class stig_generic (
-  $ipv6enabled = false
+  $ipv6enabled = false,
+  $automount   = false,
+  $tftpserver  = false,
 ){
 
   if ($::operatingsystem == 'RedHat') { 
@@ -8,18 +10,6 @@ class stig_generic (
       ensure => 'stopped',
       enable => false,
     }
-  }
-  #RHEL-06-000045, RHEL-06-000046
-  file { ['/lib', '/lib64', '/usr/lib', '/usr/lib64']:
-    owner => 'root',
-    group => 'root',
-    mode  => '0555',
-  }
-  #RHEL-06-000047, RHEL-06-000048
-  file { ['/bin', '/usr/bin', '/usr/local/bin', '/sbin', '/usr/sbin', '/usr/local/sbin']:
-    owner => 'root',
-    group => 'root',
-    mode  => '0555',
   }
 
   #RHEL-06-000071
@@ -33,9 +23,11 @@ class stig_generic (
       enable => true,
     }
   }
+  if ($tftpserver == false ) {
   #RHEL-06-000204, RHEL-05-000203
-  package { 'xinetd':
-    ensure => 'absent',
+    package { 'xinetd':
+      ensure => 'absent',
+    }
   }
   #RHEL-06-000206, RHEL-06-000211
   package { 'telnet-server':
@@ -64,9 +56,11 @@ class stig_generic (
     ensure => 'stopped',
     enable => false,
   }
-  #RHEL-06-000222, RHEL-06-000223
-  package { 'tftp-server':
-    ensure => 'absent',
+  if ($tftpserver == false ) { 
+    #RHEL-06-000222, RHEL-06-000223
+    package { 'tftp-server':
+      ensure => 'absent',
+    }
   }
   #RHEL-06-000224
   service { 'crond':
@@ -120,14 +114,19 @@ class stig_generic (
   package { 'xorg-x11-server-common':
     ensure => 'absent',
   }
-  #RHEL-06-000321
-  package { 'openswan':
-    ensure => 'installed',
-  }
   #RHEL-06-000331
   service { 'bluetooth':
     ensure => 'stopped',
     enable => false,
+  }
+
+  if ( $automount == false) 
+  {
+    #RHEL-06-000526
+    service { 'autofs':
+      ensure => 'stopped',
+      enable => false,
+    }
   }
   #2.4.3
   package { 'setroubleshoot':
