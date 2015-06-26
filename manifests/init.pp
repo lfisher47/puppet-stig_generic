@@ -2,6 +2,7 @@ class stig_generic (
   $ipv6enabled = false,
   $automount   = false,
   $tftpserver  = false,
+  $qpidd       = false,
 ){
 
   if ($::operatingsystem == 'RedHat') { 
@@ -91,10 +92,12 @@ class stig_generic (
     ensure => 'stopped',
     enable => false,
   }
+  if ($qpidd == false ) {
   #RHEL-06-000267
-  service { 'qpidd':
-    ensure => 'stopped',
-    enable => false,
+    service { 'qpidd':
+      ensure => 'stopped',
+      enable => false,
+    }
   }
   #RHEL-06-000268
   service { 'rdisc':
