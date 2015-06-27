@@ -131,6 +131,11 @@ class stig_generic (
       enable => false,
     }
   }
+  #CCE-26850-8
+  service { 'kdump':
+    ensure => 'stopped',
+    enable => false,
+  }
   #2.4.3
   package { 'setroubleshoot':
     ensure => 'absent',

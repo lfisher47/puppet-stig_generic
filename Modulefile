@@ -1,5 +1,5 @@
 name 'lfisher47-stig_generic'
-version '0.0.5'
+version '0.0.6'
 author 'lfisher47'
 summary 'Generic STIG rule enforcement'
 description 'Generic STIG rule enforcement'
