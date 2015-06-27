@@ -130,6 +130,22 @@ class stig_generic (
       ensure => 'stopped',
       enable => false,
     }
+    service { 'netfs':
+      ensure => 'stopped',
+      enable => false,
+    }
+    service { 'nfslock':
+      ensure => 'stopped',
+      enable => false,
+    }
+    service { 'rpcgssd': 
+      ensure => 'stopped',
+      enable => false,
+    }
+    service {'rpcidmapd':
+      ensure => 'stopped',
+      enable => false,
+    }
   }
   #CCE-26850-8
   service { 'kdump':
