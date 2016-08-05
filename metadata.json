@@ -1,0 +1,10 @@
+{
+  "name" : "lfisher47-stig_generic",
+  "version" : "0.0.6",
+  "source" : "https://github.com/lfisher47/puppet-stig_generic.git",
+  "author" : "lfisher47",
+  "license" : "GNU GPL 2.0",
+  "summary" : "Generic STIG rule enforcement",
+  "description" : "Generic STIG rule enforcement",
+  "project_page" : "https://github.com/lfisher47/puppet-stig_generic.git"
+}
