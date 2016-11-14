@@ -3,6 +3,7 @@ class stig_generic (
   $automount   = false,
   $tftpserver  = false,
   $qpidd       = false,
+  $x11         = false,
 ){
 
   if ($::operatingsystem == 'RedHat') { 
@@ -114,8 +115,10 @@ class stig_generic (
     enable => false,
   }
   #RHEL-06-000291
-  package { 'xorg-x11-server-common':
-    ensure => 'absent',
+  if ($x11 == false ) {
+    package { 'xorg-x11-server-common':
+      ensure => 'absent',
+    }
   }
   #RHEL-06-000331
   service { 'bluetooth':
