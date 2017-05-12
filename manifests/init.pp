@@ -64,11 +64,6 @@ class stig_generic (
       ensure => 'absent',
     }
   }
-  #RHEL-06-000224
-  service { 'crond':
-    ensure => 'running',
-    enable => true,
-  }
   #RHEL-06-000246
   service { 'avahi-daemon':
     ensure => 'stopped',
